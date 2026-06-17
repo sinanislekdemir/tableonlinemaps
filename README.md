@@ -2,6 +2,10 @@
 
 Chrome Extension that embeds an interactive map on [TableOnline.fi](https://www.tableonline.fi/en/search) search result pages, showing restaurant locations using OpenStreetMap.
 
+
+<img width="1537" height="1196" alt="tableonline2" src="https://github.com/user-attachments/assets/35689349-29d6-4b78-a380-4b613fc88337" />
+
+
 ## Install
 
 1. Open Chrome and navigate to `chrome://extensions`
