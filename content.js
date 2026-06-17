@@ -1,6 +1,5 @@
 (function () {
   var MAP_ID = 'tableonline-map';
-  var RESTAURANTS_ID = 'available-restaurants';
 
   var log = console.log.bind(console, '[TableOnline Maps]');
 
@@ -59,7 +58,7 @@
     if (existing) {
       return existing;
     }
-    var target = document.getElementById(RESTAURANTS_ID);
+    var target = document.querySelector('div[class*="searchOptions_"]');
     if (!target) {
       return null;
     }
@@ -67,7 +66,7 @@
     container.id = MAP_ID;
     container.style.cssText =
       'display:block;width:100%;height:400px;margin-bottom:16px;border-radius:8px;overflow:hidden;z-index:1;';
-    target.parentNode.insertBefore(container, target);
+    target.parentNode.insertBefore(container, target.nextSibling);
     return container;
   }
 
@@ -167,7 +166,7 @@
   }
 
   function onListMutation() {
-    if (!document.getElementById(MAP_ID) && document.getElementById(RESTAURANTS_ID)) {
+    if (!document.getElementById(MAP_ID) && document.querySelector('div[class*="searchOptions_"]')) {
       log('Map removed by page, re-injecting');
       isBooted = false;
       bootstrap();
@@ -177,7 +176,7 @@
   }
 
   function findListAncestor() {
-    var list = document.getElementById(RESTAURANTS_ID);
+    var list = document.querySelector('div[class*="searchOptions_"]');
     if (!list) {
       return null;
     }
@@ -205,14 +204,14 @@
     interval = interval || 500;
     function check() {
       attempts++;
-      var target = document.getElementById(RESTAURANTS_ID);
+      var target = document.querySelector('div[class*="searchOptions_"]');
       if (target) {
-        log('Found #' + RESTAURANTS_ID + ' after ' + attempts + ' attempt(s)');
+        log('Found searchOptions div after ' + attempts + ' attempt(s)');
         callback(target);
         return;
       }
       if (attempts >= maxAttempts) {
-        log('Gave up waiting for #' + RESTAURANTS_ID);
+        log('Gave up waiting for searchOptions div');
         return;
       }
       setTimeout(check, interval);
@@ -220,7 +219,7 @@
     check();
   }
 
-  log('Content script loaded, waiting for #' + RESTAURANTS_ID);
+  log('Content script loaded, waiting for searchOptions div');
   waitForTarget(function () {
     bootstrap();
     startObserving();
