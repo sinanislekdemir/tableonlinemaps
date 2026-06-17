@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "TableOnline Maps",
+  "version": "1.0.0",
+  "description": "Displays restaurant locations on a map in TableOnline.fi search results.",
+  "host_permissions": [
+    "https://www.tableonline.fi/*",
+    "https://service.tableonline.fi/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.tableonline.fi/en/search*"],
+      "js": ["lib/leaflet.js", "content.js"],
+      "css": ["lib/leaflet.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*"],
+      "matches": ["https://www.tableonline.fi/*"]
+    }
+  ]
+}
