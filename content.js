@@ -66,7 +66,7 @@
     container.id = MAP_ID;
     container.style.cssText =
       'display:block;width:100%;height:400px;margin-bottom:16px;border-radius:8px;overflow:hidden;z-index:1;';
-    target.parentNode.insertBefore(container, target.nextSibling);
+    target.insertAdjacentElement('afterend', container);
     return container;
   }
 
